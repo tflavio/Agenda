@@ -56,7 +56,10 @@ public class Aluno {
         this.nota = nota;
     }
 
-    // TODO: Criar toString()
+    @Override
+    public String toString()  {
+        return getId() + " - " + getNome();
+    }
 }
 
 
