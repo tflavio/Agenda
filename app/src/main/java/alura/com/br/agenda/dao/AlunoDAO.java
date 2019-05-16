@@ -31,12 +31,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public void insere(Aluno aluno) {
         SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues dados = new ContentValues();
-        dados.put("nome", aluno.getNome());
-        dados.put("endereco", aluno.getEndereco());
-        dados.put("telefone", aluno.getTelefone());
-        dados.put("site", aluno.getSite());
-        dados.put("nota", aluno.getNota());
+        ContentValues dados = pegaDadosDoAluno(aluno);
 
         db.insert("Alunos", null, dados);
     }
@@ -44,7 +39,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public List<Aluno> buscaAlunos() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Alunos;", null);
-        List<Aluno> alunos = new ArrayList<Aluno>();
+        List<Aluno> alunos = new ArrayList<>();
         while (c.moveToNext()) {
             Aluno aluno = new Aluno();
             aluno.setId(c.getLong(c.getColumnIndex("id")));
@@ -64,5 +59,24 @@ public class AlunoDAO extends SQLiteOpenHelper {
 
         String [] params = {String.valueOf(aluno.getId())};
         db.delete("Alunos", "id = ?", params);
+    }
+
+    public void altera(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues dados = pegaDadosDoAluno(aluno);
+
+        String[] params = { aluno.getId().toString() };
+        db.update("Alunos", dados, "id = ?", params);
+    }
+
+    private ContentValues pegaDadosDoAluno(Aluno aluno) {
+        ContentValues dados = new ContentValues();
+        dados.put("nome", aluno.getNome());
+        dados.put("endereco", aluno.getEndereco());
+        dados.put("telefone", aluno.getTelefone());
+        dados.put("site", aluno.getSite());
+        dados.put("nota", aluno.getNota());
+        return dados;
     }
 }
