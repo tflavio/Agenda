@@ -103,19 +103,42 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
         // Menu SMS
         MenuItem itemSMS = menu.add("Enviar SMS");
+        itemSMS.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intentSMS = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", aluno.getTelefone(), null));
+                intentSMS.putExtra("sms_body","Mensagem de Teste");
 
-        Intent intentSMS = new Intent(Intent.ACTION_VIEW);
-        intentSMS.setData(Uri.parse("sms:" + aluno.getTelefone()));
-        itemSMS.setIntent(intentSMS);
+                PackageManager packageManager = getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intentSMS, 0);
+                boolean isIntentSafe = activities.size() > 0;
+
+                if (isIntentSafe) {
+                    startActivity(intentSMS);
+                }
+                return false;
+            }
+        });
 
         // Menu Mapa
         MenuItem itemMapa = menu.add("Visualizar no mapa");
+        itemMapa.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intentMapa = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?z=14&q=" + aluno.getEndereco()));
 
-        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
-        intentMapa.setData(Uri.parse("geo:0,0?z=14&q=" + aluno.getEndereco()));
-        itemMapa.setIntent(intentMapa);
+                PackageManager packageManager = getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intentMapa, 0);
+                boolean isIntentSafe = activities.size() > 0;
 
-        // Intent ligar
+                if (isIntentSafe) {
+                    startActivity(intentMapa);
+                }
+                return false;
+            }
+        });
+
+        // Menu ligar
         MenuItem itemLigar = menu.add("Ligar");
         itemLigar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -126,7 +149,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
                             new String[]{Manifest.permission.CALL_PHONE}, 123);
                 } else {
                     Intent intentLigar = new Intent(Intent.ACTION_CALL);
-                    intentLigar.setData(Uri.parse("tel" + aluno.getTelefone()));
+                    intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
                     startActivity(intentLigar);
                 }
                 return false;
