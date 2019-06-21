@@ -9,6 +9,7 @@ public class Aluno implements Serializable {
     private String telefone;
     private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Long getId() {
         return id;
@@ -42,9 +43,7 @@ public class Aluno implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getSite() {
-        return site;
-    }
+    public String getSite() { return site; }
 
     public void setSite(String site) {
         this.site = site;
@@ -57,6 +56,10 @@ public class Aluno implements Serializable {
     public void setNota(Double nota) {
         this.nota = nota;
     }
+
+    public String getCaminhoFoto() { return caminhoFoto; }
+
+    public void setCaminhoFoto(String caminhoFoto) { this.caminhoFoto = caminhoFoto; }
 
     @Override
     public String toString()  {
