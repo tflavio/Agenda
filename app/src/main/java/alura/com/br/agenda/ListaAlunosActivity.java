@@ -33,6 +33,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
+        if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.RECEIVE_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(ListaAlunosActivity.this,
+                    new String[]{ Manifest.permission.RECEIVE_SMS }, 234);
+        }
+
         listaAlunos = findViewById(R.id.lista_alunos);
 
         Button novoAluno = findViewById(R.id.novo_aluno);
@@ -107,22 +113,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
         itemSMS.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.RECEIVE_SMS)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ListaAlunosActivity.this,
-                            new String[]{ Manifest.permission.RECEIVE_SMS }, 234);
-                } else {
-                    Intent intentSMS = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", aluno.getTelefone(), null));
-                    intentSMS.putExtra("sms_body", "Mensagem de Teste");
+                Intent intentSMS = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", aluno.getTelefone(), null));
+                intentSMS.putExtra("sms_body", "Mensagem de Teste");
 
-                    PackageManager packageManager = getPackageManager();
-                    List<ResolveInfo> activities = packageManager.queryIntentActivities(intentSMS, 0);
-                    boolean isIntentSafe = activities.size() > 0;
+                PackageManager packageManager = getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(intentSMS, 0);
+                boolean isIntentSafe = activities.size() > 0;
 
-                    if (isIntentSafe) {
-                        startActivity(intentSMS);
-                    }
+                if (isIntentSafe) {
+                    startActivity(intentSMS);
                 }
+
                 return false;
             }
         });
