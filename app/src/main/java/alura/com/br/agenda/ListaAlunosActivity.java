@@ -75,17 +75,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // podiamos fazer um switch
-        if (item.getItemId() == R.id.enviar_notas){
-            dao = new AlunoDAO(this);
-            List<Aluno> alunos = dao.buscaAlunos();
-            dao.close();
-
-            AlunoConverter converter = new AlunoConverter();
-            String json = converter.toJson(alunos);
-            Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+        switch (item.getItemId()) {
+            case R.id.enviar_notas:
+                new EnviaAlunosTask(this).execute();
+                break;
         }
-
 
         return super.onOptionsItemSelected(item);
     }
