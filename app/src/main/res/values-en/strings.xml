@@ -6,4 +6,5 @@
     <string name="campo_endereco">Address</string>
     <string name="campo_telefone">Phone</string>
     <string name="campo_site">Site</string>
+    <string name="mensagem_confirmacao">Contact saved!</string>
 </resources>

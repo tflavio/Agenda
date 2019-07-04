@@ -86,7 +86,7 @@ public class FormularioActivity extends AppCompatActivity {
 
                 dao.close();
 
-                Toast.makeText(FormularioActivity.this, "Aluno salvo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormularioActivity.this, getResources().getString(R.string.mensagem_confirmacao), Toast.LENGTH_SHORT).show();
                 finish();
         }
         return super.onOptionsItemSelected(item);
