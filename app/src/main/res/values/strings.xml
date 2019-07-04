@@ -1,4 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Agenda</string>
-    <string name="title_activity_lista_alunos">ListaAlunosActivity</string>
+    <string name="title_activity_lista_alunos">Lista Alunos Activity</string>
+    <string name="campo_nome">Nome</string>
+    <string name="campo_endereco">Endereço</string>
+    <string name="campo_telefone">Telefone</string>
+    <string name="campo_site">Site</string>
 </resources>
