@@ -4,9 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.MaskFilter;
 import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -82,6 +83,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
             case R.id.menu_baixar_provas:
                 Intent vaiParaProvas = new Intent(this, ProvasActivity.class);
                 startActivity(vaiParaProvas);
+                break;
+            case R.id.menu_mapa:
+                Intent vaiParaMapa = new Intent(this, MapaAlunosActivity.class);
+                startActivity(vaiParaMapa);
                 break;
         }
 
