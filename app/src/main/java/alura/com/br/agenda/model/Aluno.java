@@ -1,12 +1,15 @@
 package alura.com.br.agenda.model;
 
-public class Aluno {
+import java.io.Serializable;
+
+public class Aluno implements Serializable {
     private Long id;
     private String nome;
     private String endereco;
     private String telefone;
     private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Long getId() {
         return id;
@@ -40,9 +43,7 @@ public class Aluno {
         this.telefone = telefone;
     }
 
-    public String getSite() {
-        return site;
-    }
+    public String getSite() { return site; }
 
     public void setSite(String site) {
         this.site = site;
@@ -55,6 +56,10 @@ public class Aluno {
     public void setNota(Double nota) {
         this.nota = nota;
     }
+
+    public String getCaminhoFoto() { return caminhoFoto; }
+
+    public void setCaminhoFoto(String caminhoFoto) { this.caminhoFoto = caminhoFoto; }
 
     @Override
     public String toString()  {

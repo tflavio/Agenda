@@ -7,28 +7,53 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/foto_aluno_form"
+                android:background="#006aff"
+                android:src="@drawable/person"
+                />
+
+
+            <Button
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:id="@+id/formulario_botao"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:elevation="7dp"
+                android:background="@drawable/fundo_camera"
+                />
+        </RelativeLayout>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome"
+            android:hint="@string/campo_nome"
             android:id="@+id/formulario_nome"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Endereço"
+            android:hint="@string/campo_endereco"
             android:id="@+id/formulario_endereco"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefone"
+            android:hint="@string/campo_telefone"
             android:id="@+id/formulario_telefone"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Site"
+            android:hint="@string/campo_site"
             android:id="@+id/formulario_site"/>
 
         <RatingBar
